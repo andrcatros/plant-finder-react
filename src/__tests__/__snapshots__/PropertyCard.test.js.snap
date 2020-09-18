@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders PropertyCard component renders PropertyCard component with accurate data when passed props 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxjAm bnBZJY"
+  >
+    <img
+      alt="placeholder"
+      src="listing-placeholder.jpg"
+    />
+    <span
+      data-testid="listing-title-test"
+    >
+      <b>
+        Mock listing
+      </b>
+    </span>
+    <br />
+    <span
+      data-testid="listing-type-test"
+    >
+      <i>
+        flat
+      </i>
+    </span>
+     - 
+    <span
+      data-testid="listing-city-test"
+    >
+      <i>
+        Manchester
+      </i>
+    </span>
+    <br />
+    <span
+      data-testid="listing-bathrooms-test"
+      title="undefined bathrooms"
+    >
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-bath fa-w-16 "
+        data-icon="bath"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M32,384a95.4,95.4,0,0,0,32,71.09V496a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V480H384v16a16,16,0,0,0,16,16h32a16,16,0,0,0,16-16V455.09A95.4,95.4,0,0,0,480,384V336H32ZM496,256H80V69.25a21.26,21.26,0,0,1,36.28-15l19.27,19.26c-13.13,29.88-7.61,59.11,8.62,79.73l-.17.17A16,16,0,0,0,144,176l11.31,11.31a16,16,0,0,0,22.63,0L283.31,81.94a16,16,0,0,0,0-22.63L272,48a16,16,0,0,0-22.62,0l-.17.17c-20.62-16.23-49.83-21.75-79.73-8.62L150.22,20.28A69.25,69.25,0,0,0,32,69.25V256H16A16,16,0,0,0,0,272v16a16,16,0,0,0,16,16H496a16,16,0,0,0,16-16V272A16,16,0,0,0,496,256Z"
+          fill="currentColor"
+        />
+      </svg>
+       
+    </span>
+      
+    <span
+      data-testid="listing-bedrooms-test"
+      title="3 bedrooms"
+    >
+      <svg
+        aria-hidden="true"
+        class="svg-inline--fa fa-bed fa-w-20 "
+        data-icon="bed"
+        data-prefix="fas"
+        focusable="false"
+        role="img"
+        viewBox="0 0 640 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M176 256c44.11 0 80-35.89 80-80s-35.89-80-80-80-80 35.89-80 80 35.89 80 80 80zm352-128H304c-8.84 0-16 7.16-16 16v144H64V80c0-8.84-7.16-16-16-16H16C7.16 64 0 71.16 0 80v352c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16v-48h512v48c0 8.84 7.16 16 16 16h32c8.84 0 16-7.16 16-16V240c0-61.86-50.14-112-112-112z"
+          fill="currentColor"
+        />
+      </svg>
+       3
+    </span>
+    <br />
+    <span
+      data-testid="listing-price-test"
+    >
+      £100,000
+    </span>
+    <br />
+    <a
+      data-testid="listing-email-test"
+      href="mailto:mock.m@email.com"
+    >
+      <button
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-envelope fa-w-16 "
+          data-icon="envelope"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+            fill="currentColor"
+          />
+        </svg>
+         Email seller
+      </button>
+    </a>
+  </div>
+</DocumentFragment>
+`;

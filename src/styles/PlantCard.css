@@ -1,0 +1,55 @@
+.PlantCard {
+  padding: 3vh 0vh 3vh;
+  overflow-x: hidden;
+  width: 400px;
+  border-style: solid;
+  border-width: thin;
+  border-color: grey;
+}
+
+.PlantCard button {
+  border-style: none;
+  background-color: darkgreen;
+  width: 200px;
+  height: 30px;
+  font-size: 17px;
+  border-radius: 3vw;
+  margin: 4px;
+}
+
+.PlantCard img {
+  width: 350px;
+}
+
+.PlantCard-text {
+  font-size: 16px;
+}
+
+.PlantCard-text-description {
+  padding: 15px 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .PlantCard {
+    width: 100vw;
+    border-top: thin solid grey;
+    border-bottom: thin solid grey;
+    border-left: none;
+    border-right: none;
+  }
+  .PlantCard-text {
+    font-size: 16px;
+  }
+
+  .PlantCard button {
+    border-style: none;
+    background-color: green;
+    width: 80vw;
+    height: 5vh;
+    margin: 1.5vw;
+  }
+
+  .PlantCard img {
+    width: 100vw;
+  }
+}

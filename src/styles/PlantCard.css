@@ -10,9 +10,11 @@
 .PlantCard button {
   border-style: none;
   background-color: darkgreen;
-  padding: 2vw;
-  font-size: 20px;
-  border-radius: 5vw;
+  width: 200px;
+  height: 30px;
+  font-size: 17px;
+  border-radius: 3vw;
+  margin: 4px;
 }
 
 .PlantCard img {

@@ -5,9 +5,13 @@ import axios from "axios";
 import PlantCard from "./PlantCard";
 import PlantSearchBar from "./PlantSearchBar";
 
+import "../styles/AllPlants.css";
+
 const AllPlants = () => {
   const [plants, setPlants] = useState([]);
   const { search } = useLocation();
+
+  console.log(search);
 
   // initial render
   useEffect(() => {

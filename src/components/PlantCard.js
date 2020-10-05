@@ -6,11 +6,14 @@ const PlantCard = ({ email, description, name, category, img, plantBy }) => {
 
   if (!img || img === "default") {
     displayImg = "/placeholder.jpg";
+  } else {
+    displayImg = img;
   }
+
   return (
     <div className="PlantCard">
       <h2>{name}</h2>
-      <img src={displayImg} alt="placeholder for plants" />
+      <img src={`${displayImg}`} alt="placeholder for plants" />
       <div className="PlantCard-text">
         posted by <b>{plantBy}</b> <br /> {/* link to profile page !!!!  */}
         <div className="PlantCard-text-description"> {description} </div>

@@ -2,40 +2,30 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import Alert from "./Alert";
-import "../styles/AddPlant.css";
 
 const AddPlant = ({ isLoggedIn, userID }) => {
   const initialState = {
     name: "",
     description: "",
-    category: ["Houseplant"],
+    category: "Houseplant",
   };
 
   const [fields, setFields] = useState(initialState);
+  const [img, setImg] = useState(null);
   const [alert, setAlert] = useState({});
 
-  const handleFieldChange = (event) => {
-    setFields({ ...fields, [event.target.name]: event.target.value });
+  const handleUpload = (event) => {
+    setImg(event.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(fields);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const data = new FormData(e.target);
-    console.log(data);
-
-    const validate = () => {
-      if (fields.name === null || fields.name.trim() === "") {
-        setAlert({ message: "please enter a name" });
-      } else {
-        if (fields.description === null || fields.name.description === "") {
-          setAlert({ message: "please enter a description" });
-        } else {
-          return true;
-        }
-      }
-    };
+    const data = new FormData();
+    data.append("img", img);
+    data.append("name", fields.name);
+    data.append("description", fields.description);
+    data.append("category", fields.category);
 
     const postData = async () => {
       await axios
@@ -55,56 +45,85 @@ const AddPlant = ({ isLoggedIn, userID }) => {
         });
     };
 
+    const validate = () => {
+      if (fields.name === null || fields.name.trim() === "") {
+        setAlert({ message: "please enter a name" });
+      } else {
+        if (fields.description === null || fields.name.description === "") {
+          setAlert({ message: "please enter a description" });
+        } else {
+          return true;
+        }
+      }
+    };
+
     if (validate) {
       postData();
     }
   };
 
-  return (
-    <div className="AddPlant">
-      {/*}   {!isLoggedIn ? (
-        <p>Please login to add plants.</p>
-   ) : ( */}
-      <div>
-        <p>DO NOT USE UNTIL LOGIN IS SETUP</p>
-        <form onSubmit={handleSubmit} className="AddPlant-form">
-          <label>
-            Image file: <br />
-            <input type="file" name="img" id="img" accept="image/*" />
-          </label>
-          <label>
-            Name: <br />
-            <input
-              id="name"
-              name="name"
-              value={fields.name}
-              onChange={handleFieldChange}
-            />
-          </label>
-          <label>
-            Description: <br />
-            <textarea
-              id="description"
-              name="description"
-              onChange={handleFieldChange}
-              value={fields.description}
-            />
-          </label>
-          <label>
-            Category: <br />
-            <select id="category" name="category" onChange={handleFieldChange}>
-              <option value="Houseplant">Houseplant</option>
-              <option value="Seeds & Bulbs">Seeds & Bulbs</option>
-              <option value="Seedling">Seedling</option>
-              <option value="Pots & Containers">Pots & Containers</option>
-              <option value="Other">Other</option>
-            </select>
-          </label>
-          <button type="submit">Submit</button>
-        </form>
+  const handleFieldChange = (event) => {
+    setFields({ ...fields, [event.target.name]: event.target.value });
+  };
 
-        {alert.message && <Alert {...alert} />}
-      </div>
+  return (
+    <div className="AddPlant" style={{ margin: "100px" }}>
+      {!isLoggedIn ? (
+        <p>Please login to add plants.</p>
+      ) : (
+        <div>
+          <p>DO NOT USE UNTIL LOGIN AND API ARE FIXED</p>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Image file:
+              <input
+                type="file"
+                name="img"
+                id="img"
+                accept="image/*"
+                onChange={handleUpload}
+              />
+            </label>
+            <label>
+              Name:
+              <input
+                id="name"
+                name="name"
+                value={fields.name}
+                onChange={handleFieldChange}
+              />
+            </label>
+            <label>
+              Description:
+              <textarea
+                id="description"
+                name="description"
+                onChange={handleFieldChange}
+                value={fields.description}
+              />
+            </label>
+            <label>
+              Category:
+              <select
+                id="category"
+                name="category"
+                onChange={handleFieldChange}
+              >
+                <option value="Houseplant">Houseplant</option>
+                <option value="Seeds & Bulbs">Seeds & Bulbs</option>
+                <option value="Seedling">Seedling</option>
+                <option value="Pots & Containers">Pots & Containers</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <button type="submit" onSubmit={handleSubmit}>
+              Submit
+            </button>
+          </form>
+
+          {alert.message && <Alert {...alert} />}
+        </div>
+      )}
     </div>
   );
 };

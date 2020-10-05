@@ -26,7 +26,7 @@ const AllPlants = () => {
   }, []);
 
   // re-render on search
-  useEffect(() => {
+  /* useEffect(() => {
     async function fetchData() {
       await axios
         .get(`https://plant-finder-api.herokuapp.com/api/v1/plants${search}`)
@@ -35,7 +35,7 @@ const AllPlants = () => {
     }
 
     fetchData();
-  }, [search]);
+  }, [search]);*/
 
   return (
     <div className="AllPlants">
@@ -49,6 +49,7 @@ const AllPlants = () => {
             plantBy={plant.User.name}
             description={plant.description}
             category={plant.category}
+            img={plant.img}
           />
         ))}
       </div>

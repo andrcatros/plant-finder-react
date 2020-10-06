@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react - router - dom';
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: ,
-            name: '',
-            location: '',
-            password: ''
+            email: "",
+            name: "",
+            location: "",
+            password: ""
         };
         this.update = this.update.bind(this);
         this.displayLogin = this.displayLogin.bind(this);
@@ -27,10 +29,28 @@ class Register extends Component {
           email: "",
           name: "",
           location: "",
-          password: ""
+          password: "",
         });
     }
-    render() {
+    handleChange = event => {
+      this.setState({ name: event.target.value });
+    }
+  
+    handleSubmit = event => {
+      event.preventDefault();
+  
+      const user = {
+        name: this.state.name
+      };
+    
+    axios.post("https://plant-finder-api.herokuapp.com/api/v1/users", { user })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+    }
+  
+    render(){
         return (
 			<div className="register">
 				<form onSubmit={this.displayLogin}>
@@ -67,9 +87,9 @@ class Register extends Component {
 					</div>
 					<input type="submit" value="Login" />
 				</form >
-            <Link to="/"> Login Here</Link >
+          <Link to="/"> Login Here</Link >
 			</div >
-		);
-    }
+    );
+  }
 }
 export default Register;

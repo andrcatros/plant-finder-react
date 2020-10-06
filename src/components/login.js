@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 class Login extends Component {
 	constructor(props) {
-	  (props);
+	  super(props);
 		this.state = {
-			email: ‘’,
-			password: ‘’
+			email: "",
+			password: ""
 		};
 		this.update = this.update.bind(this);
 		this.displayLogin = this.displayLogin.bind(this);
@@ -20,39 +20,39 @@ class Login extends Component {
 	}
 	displayLogin(e) {
 		e.preventDefault();
-		console.log(You are logged in’);
+		console.log("You are logged in");
 		console.log(this.state);
 		this.setState({
-			email: ‘’,
-			password: ‘’
+			email: "",
+			password: ""
 		});
 	}
 	render() {
 		return (
-			<div className=“login”>
+			<div className="login">
 				<form onSubmit={this.displayLogin}>
 					<h2>Login</h2>
-					<div className=“username”>
+					<div className="username">
 						<input
-							type=“text”
-							placeholder=“Username...”
+							type="text"
+							placeholder="Username..."
 							value={this.state.email}
 							onChange={this.update}
-							name=“email”
+							name="email"
 						/>
 					</div>
-					<div className=“password”>
+					<div className="password">
 						<input
-							type=“password”
-							placeholder=“Password...”
+							type="password"
+							placeholder="Password..."
 							value={this.state.password}
 							onChange={this.update}
-							name=“password”
+							name="password"
 						/>
 					</div>
-					<input type=“submit” value=“Login” />
+					<input type="submit" value="Login" />
 				</form >
-			<Link to=“ /register”> Create an account</Link >
+			<Link to=" /register"> Create an account</Link >
 			</div >
 		);
 	}

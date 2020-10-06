@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Profile = ({
   firstName,
@@ -13,4 +13,4 @@ const Profile = ({
   </div>
 )
 
-export default Profile
+export default Profile;

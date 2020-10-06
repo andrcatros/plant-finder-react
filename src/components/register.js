@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import loginImg from '../styles/open-doodles-plant.svg';
 import "../styles/mine.scss";
+import "../styles/App.scss";
 
 class Register extends Component {
     constructor(props) {
@@ -68,6 +69,10 @@ class Register extends Component {
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input type="text" name="email" placeholder="email" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Location</label>
+                <input type="text" name="location" placeholder="location" />
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>

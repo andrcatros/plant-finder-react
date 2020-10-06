@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import loginImg from '../styles/open-doodles-plant.svg';
 import "../styles/mine.scss";
-
+import "../styles/App.scss";
 class Login extends Component {
 	constructor(props) {
 	  super(props);

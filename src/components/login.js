@@ -1,69 +1,60 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import "../styles/mine.scss";
-import loginImg from '../styles/open-doodles-plant.svg';
-
-const initialState = {
-  fields: { email: "", password: "" },
-};
-
-const LogIn = ({ setUser }) => {
-  const [value, setValue] = useState(initialState.fields);
-  const handleInput = (event) => {
-    setValue({ ...value, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-      axios.post("https://plant-finder-api.herokuapp.com/api/v1/login", {
-        email: value.email,
-        password: value.password,
-      }).then((response) => {
-        setUser(response);
-      }).catch((err) => {
-        console.log(err);
-        alert("Error! Try Again!")
-      });
-  };
-
-  return (
-    <div className="base-container">
-    <div className="content">
-    <div className="image">
-    <img src={loginImg} alt=""/>
-     </div>
-    <div className="form">
-      <form action="submit" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <input 
-          type="text"
-          placeholder="Username"
-          required
-          name="username"
-          onChange={handleInput}
-          value={value.email}
-        /></div>
-        <div className="form-group">
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          name="password"
-          onChange={handleInput}
-          value={value.password}
-        /></div>
-        <div className="footer">
-        <button type="submit" className="btn">Login</button>
-        <Link to="/Profile"></Link>
-        </div>
-      </form>
-      <Link to="/register">Sign up!</Link>
-    </div>
-    </div>
-    </div>
-  )
-};
-
-export default LogIn;
+class Login extends Component {
+	constructor(props) {
+	  (props);
+		this.state = {
+			email: ‘’,
+			password: ‘’
+		};
+		this.update = this.update.bind(this);
+		this.displayLogin = this.displayLogin.bind(this);
+	}
+	update(e) {
+		let name = e.target.name;
+		let value = e.target.value;
+		this.setState({
+			[name]: value
+		});
+	}
+	displayLogin(e) {
+		e.preventDefault();
+		console.log(You are logged in’);
+		console.log(this.state);
+		this.setState({
+			email: ‘’,
+			password: ‘’
+		});
+	}
+	render() {
+		return (
+			<div className=“login”>
+				<form onSubmit={this.displayLogin}>
+					<h2>Login</h2>
+					<div className=“username”>
+						<input
+							type=“text”
+							placeholder=“Username...”
+							value={this.state.email}
+							onChange={this.update}
+							name=“email”
+						/>
+					</div>
+					<div className=“password”>
+						<input
+							type=“password”
+							placeholder=“Password...”
+							value={this.state.password}
+							onChange={this.update}
+							name=“password”
+						/>
+					</div>
+					<input type=“submit” value=“Login” />
+				</form >
+			<Link to=“ /register”> Create an account</Link >
+			</div >
+		);
+	}
+}
+export default Login;

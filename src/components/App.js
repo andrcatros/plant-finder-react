@@ -1,40 +1,30 @@
-import React, { useState } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import LogIn from "./login";
-import Profile from "./Profile";
-import Register from "./register";
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+
 import "../styles/App.scss";
 
-function App() {
-  const [user, setUser] = useState();
+import AllPlants from "./AllPlants";
+import AddPlants from "./AddPlant";
+import Login from "./login";
+import Register from "./register";
 
+function App() {
   return (
     <div className="App">
-      <div className="header">
-      <div className="login">
-      <div className="container">
-      <>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <LogIn setUser={setUser} />}
-          ></Route>
-          <Route exact path="/register">
-            <Register />
-          </Route>
-          <Route
-            exact
-            path="/profile"
-            render={() =>
-              user ? <Profile user={user} /> : <Redirect to="/Profile" />
-            }
-          ></Route>
-        </Switch>
-      </>
-    </div>
-    </div>
-    </div>
+      <Switch>
+      <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/register">
+          <Register />
+        </Route>
+        <Route exact path="/add-plant">
+          <AddPlants />
+        </Route>
+        <Route exact path="/all-plants">
+          <AllPlants />
+        </Route>
+      </Switch>
     </div>
   );
 }

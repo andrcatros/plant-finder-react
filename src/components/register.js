@@ -1,97 +1,75 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
-import "../styles/mine.scss";
-import loginImg from '../styles/open-doodles-plant.svg';
-
-const initialState = {
-  fields: {
-    email: "",
-    username: "",
-    password: "",
-  },
-};
-
-const Register = ({ setUserLoggedIn }) => {
-  const [value, setValue] = useState(initialState.fields);
-  const details = useHistory();
-  const handleChange = (e) => {
-    setValue({
-      ...value,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (value.password === value.confirmPassword) {
-      console.log("success");
-      axios
-        .post("https://plant-finder-api.herokuapp.com/api/v1/users", {
-          username: value.username,
-          email: value.email,
-          password: value.password,
-        })
-        .then((response) => {
-          console.log(response);
-          setUserLoggedIn(true);
-          alert("Successful registration!");
-          details.push("/");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      console.log("Passwords are not match!");
+import React, { Component } from 'react';
+import { Link } from 'react - router - dom';
+class Register extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: ,
+            name: '',
+            location: '',
+            password: ''
+        };
+        this.update = this.update.bind(this);
+        this.displayLogin = this.displayLogin.bind(this);
     }
-  };
-
-  return (
-    <div className="base-container">
-      <div className="content">
-          <div className="image">
-            <img src={loginImg} alt=""/>
-          </div>
-    <div className="form">
-      <form action="submit" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          name="email"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Username"
-          required
-          name="username"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          name="password"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Repeat Password"
-          required
-          name="confirmPassword"
-          onChange={handleChange}
-        />
-      </div>
-        <button type="submit" className="btn">Register</button>
-      </form>
-      </div>
-      <Link to="/">Already got an account?</Link>
-    </div>
-  </div>
-  );
-};
-
+    update(e) {
+        let name = e.target.name;
+        let value = e.target.value;
+        this.setState({
+            [name]: value
+        });
+    }
+    displayLogin(e) {
+        e.preventDefault();
+        console.log("You have successfully registered");
+        console.log(this.state);
+        this.setState({
+          email: "",
+          name: "",
+          location: "",
+          password: ""
+        });
+    }
+    render() {
+        return (
+			<div className="register">
+				<form onSubmit={this.displayLogin}>
+					<h2>Register</h2>
+					<div className="name">
+						<input
+							type="text"
+							placeholder="Full Name"
+							name="fullname"
+							value={this.state.fullname}
+							onChange={this.update}
+						/>
+					</div>
+					<div className="email">
+						<input
+							type="text"
+							placeholder="Enter your email"
+							name="email"
+							value={this.state.email}
+							onChange={this.update}
+						/>
+					</div>
+					<div className="pasword">
+						<input
+							type="password"
+							placeholder="Password"
+							name="password"
+							value={this.state.password}
+							onChange={this.update}
+						/>
+					</div>
+					<div className="password">
+						<input type="password" placeholder="Confirm Password" name="password1" />
+					</div>
+					<input type="submit" value="Login" />
+				</form >
+            <Link to="/"> Login Here</Link >
+			</div >
+		);
+    }
+}
 export default Register;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from "axios";
+import loginImg from '../styles/open-doodles-plant.svg';
+import "../styles/mine.scss";
 
 class Register extends Component {
     constructor(props) {
@@ -50,46 +52,37 @@ class Register extends Component {
       })
     }
   
-    render(){
-        return (
-			<div className="register">
-				<form onSubmit={this.displayLogin}>
-					<h2>Register</h2>
-					<div className="name">
-						<input
-							type="text"
-							placeholder="Full Name"
-							name="fullname"
-							value={this.state.fullname}
-							onChange={this.update}
-						/>
-					</div>
-					<div className="email">
-						<input
-							type="text"
-							placeholder="Enter your email"
-							name="email"
-							value={this.state.email}
-							onChange={this.update}
-						/>
-					</div>
-					<div className="pasword">
-						<input
-							type="password"
-							placeholder="Password"
-							name="password"
-							value={this.state.password}
-							onChange={this.update}
-						/>
-					</div>
-					<div className="password">
-						<input type="password" placeholder="Confirm Password" name="password1" />
-					</div>
-					<input type="submit" value="Login" />
-				</form >
-          <Link to="/"> Login Here</Link >
-			</div >
-    );
+    render() {
+      return (
+        <div className="base-container" ref={this.props.containerRef}>
+          <div className="header">Register</div>
+          <div className="content">
+            <div className="image">
+              <img src={loginImg} alt=""/>
+            </div>
+            <div className="form">
+              <div className="form-group">
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" placeholder="username" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="text" name="email" placeholder="email" />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="text" name="password" placeholder="password" />
+              </div>
+            </div>
+          </div>
+          <div className="footer">
+            <button type="button" className="btn">
+              Register
+            </button>
+            <Link to="/login"> Login Here</Link >
+          </div>
+        </div>
+      );
+    }
   }
-}
 export default Register;

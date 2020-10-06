@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import loginImg from '../styles/open-doodles-plant.svg';
+import "../styles/mine.scss";
 
 class Login extends Component {
 	constructor(props) {
@@ -26,35 +28,35 @@ class Login extends Component {
 			email: "",
 			password: ""
 		});
-	}
-	render() {
-		return (
-			<div className="login">
-				<form onSubmit={this.displayLogin}>
-					<h2>Login</h2>
-					<div className="username">
-						<input
-							type="text"
-							placeholder="Username..."
-							value={this.state.email}
-							onChange={this.update}
-							name="email"
-						/>
-					</div>
-					<div className="password">
-						<input
-							type="password"
-							placeholder="Password..."
-							value={this.state.password}
-							onChange={this.update}
-							name="password"
-						/>
-					</div>
-					<input type="submit" value="Login" />
-				</form >
-			<Link to=" /register"> Create an account</Link >
-			</div >
-		);
-	}
+  }
+  
+  render() {
+    return (
+      <div className="base-container" ref={this.props.containerRef}>
+        <div className="header">Login</div>
+        <div className="content">
+          <div className="image">
+            <img src={loginImg} alt=""/>
+          </div>
+          <div className="form">
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input type="text" name="username" placeholder="username" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input type="password" name="password" placeholder="password" />
+            </div>
+          </div>
+        </div>
+        <div className="footer">
+          <button type="button" className="btn">
+            Login
+          </button>
+          <Link to="/register"> Login Here</Link >
+        </div>
+      </div>
+    );
+  }
 }
 export default Login;

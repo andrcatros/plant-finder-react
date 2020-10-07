@@ -33,7 +33,7 @@ class Login extends Component {
   render() {
     return (
       <div className="base-container" ref={this.props.containerRef}>
-        <div className="header">Login</div>
+       
         <div className="content">
           <div className="image">
             <img src={loginImg} alt=""/>
@@ -46,16 +46,18 @@ class Login extends Component {
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input type="password" name="password" placeholder="password" />
-            </div>
-          </div>
-        </div>
         <div className="footer">
           <button type="button" className="btn">
             Login
-          </button>
-          <Link to="/register"> Login Here</Link >
+          </button> 
+          <Link to="/register" type="button" className="btn"> Register</Link >
         </div>
       </div>
+      </div>
+      </div>
+      </div>
+
+      
     );
   }
 }

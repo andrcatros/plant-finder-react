@@ -56,7 +56,7 @@ class Register extends Component {
     render() {
       return (
         <div className="base-container" ref={this.props.containerRef}>
-          <div className="header">Register</div>
+          
           <div className="content">
             <div className="image">
               <img src={loginImg} alt=""/>
@@ -84,7 +84,7 @@ class Register extends Component {
             <button type="button" className="btn">
               Register
             </button>
-            <Link to="/login"> Login Here</Link >
+            <Link to="/login" type="button" className="btn"> Login </Link >
           </div>
         </div>
       );

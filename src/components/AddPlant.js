@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "./Alert";
@@ -71,7 +72,9 @@ const AddPlant = ({ isLoggedIn, userID }) => {
   return (
     <div className="AddPlant">
       {!isLoggedIn ? (
-        <p>Please login to add plants.</p>
+        <p>
+          Please <Link to="/login">login</Link> to add plants.
+        </p>
       ) : (
         <div>
           <form onSubmit={handleSubmit}>

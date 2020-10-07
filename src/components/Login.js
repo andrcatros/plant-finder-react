@@ -3,7 +3,8 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "./Alert";
-import GoBackButton from "./GoBackButton";
+
+import "../styles/Login.css";
 
 const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
   const [fields, setFields] = useState({ email: "", password: "" });
@@ -51,13 +52,13 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
   };
 
   return (
-    <div className="Login" style={{ margin: "100px" }}>
+    <div className="Login">
       {isLoggedIn ? (
         <Redirect to="/" />
       ) : (
         <div>
           {" "}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="login-form">
             <label>
               Email address:
               <input
@@ -68,6 +69,7 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
                 onChange={handleFieldChange}
               />
             </label>
+            <br />
             <label>
               Password:
               <input
@@ -79,10 +81,12 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
                 value={fields.password}
               />
             </label>
-            <button type="submit">Submit</button>
+            <br />
+            <button type="submit" className="login-button">
+              Submit
+            </button>
           </form>
           {alert.message && <Alert {...alert} />}
-          <GoBackButton path={"/"} />
         </div>
       )}{" "}
     </div>

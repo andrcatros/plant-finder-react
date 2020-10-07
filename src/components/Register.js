@@ -5,6 +5,8 @@ import axios from "axios";
 import GoBackButton from "./GoBackButton";
 import Alert from "./Alert";
 
+import "../styles/Register.css";
+
 const Register = ({ setUserID, setUserName, setIsLoggedIn }) => {
   const initialState = {
     fields: {
@@ -80,8 +82,8 @@ const Register = ({ setUserID, setUserName, setIsLoggedIn }) => {
   };
 
   return (
-    <div className="Register" style={{ margin: "100px" }}>
-      <p>This is Register.</p>
+    <div className="Register">
+      <h3>Create New Account</h3>
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -104,7 +106,7 @@ const Register = ({ setUserID, setUserName, setIsLoggedIn }) => {
           />
         </label>
         <label>
-          City:
+          City: {"   "}
           <select id="location" name="location" onChange={handleFieldChange}>
             <option value="Manchester">Manchester</option>
             <option value="Liverpool">Liverpool</option>
@@ -133,7 +135,9 @@ const Register = ({ setUserID, setUserName, setIsLoggedIn }) => {
             onChange={(e) => (retypePassword = e.target.value)}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" className="register-button">
+          Submit
+        </button>
       </form>
 
       {alert.message && <Alert {...alert} />}

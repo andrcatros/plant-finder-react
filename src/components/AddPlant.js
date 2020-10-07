@@ -3,6 +3,8 @@ import axios from "axios";
 
 import Alert from "./Alert";
 
+import "../styles/AddPlant.css";
+
 const AddPlant = ({ isLoggedIn, userID }) => {
   const initialState = {
     name: "",
@@ -67,15 +69,14 @@ const AddPlant = ({ isLoggedIn, userID }) => {
   };
 
   return (
-    <div className="AddPlant" style={{ margin: "100px" }}>
+    <div className="AddPlant">
       {!isLoggedIn ? (
         <p>Please login to add plants.</p>
       ) : (
         <div>
-          <p>DO NOT USE UNTIL LOGIN AND API ARE FIXED</p>
           <form onSubmit={handleSubmit}>
             <label>
-              Image file:
+              Plant image:
               <input
                 type="file"
                 name="img"
@@ -85,7 +86,7 @@ const AddPlant = ({ isLoggedIn, userID }) => {
               />
             </label>
             <label>
-              Name:
+              Plant name:
               <input
                 id="name"
                 name="name"
@@ -94,7 +95,7 @@ const AddPlant = ({ isLoggedIn, userID }) => {
               />
             </label>
             <label>
-              Description:
+              Plant description:
               <textarea
                 id="description"
                 name="description"
@@ -103,7 +104,7 @@ const AddPlant = ({ isLoggedIn, userID }) => {
               />
             </label>
             <label>
-              Category:
+              Category: {"  "}
               <select
                 id="category"
                 name="category"

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "../styles/Navbar.css";
+
 const NavBar = ({ isLoggedIn, handleLogout }) => {
   return (
-    <div>
-      <ul className="navbar-links">
+    <div className="Navbar">
+      <ul>
         <li>
           <Link to="/">Home</Link>
         </li>

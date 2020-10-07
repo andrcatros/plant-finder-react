@@ -57,7 +57,6 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
       ) : (
         <div>
           {" "}
-          <p>This is Login.</p>
           <form onSubmit={handleSubmit}>
             <label>
               Email address:

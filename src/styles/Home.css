@@ -1,0 +1,25 @@
+.Home button {
+  background-color: #87c570;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  outline: none;
+  border: 0;
+  text-decoration: none;
+  padding: 0.2vw 1vw;
+  font-size: 18px;
+  border-radius: 0.7rem;
+  width: 200px;
+  margin: 0.3vw;
+  @media screen and (max-width: 600px) {
+    width: 20vw;
+  }
+}
+
+.Home a button:hover {
+  background-color: #579540;
+}
+
+.Home .Home-buttons {
+  align-content: center;
+}

@@ -114,9 +114,9 @@ const AddPlant = ({ isLoggedIn, userID }) => {
                 onChange={handleFieldChange}
               >
                 <option value="Houseplant">Houseplant</option>
-                <option value="Seeds & Bulbs">Seeds & Bulbs</option>
+                <option value="Seeds and Bulbs">Seeds & Bulbs</option>
                 <option value="Seedling">Seedling</option>
-                <option value="Pots & Containers">Pots & Containers</option>
+                <option value="Pots and Containers">Pots & Containers</option>
                 <option value="Other">Other</option>
               </select>
             </label>

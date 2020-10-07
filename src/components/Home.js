@@ -10,7 +10,8 @@ const Home = ({ isLoggedIn, userName }) => {
         <div>Welcome back {userName} :)</div>
       ) : (
         <>
-          Welcome. Would you like to login or register an account?
+          <p>Welcome to Plant Finder.</p>
+          <p>Would you like to login or register an account?</p>
           <br />
           <div className="Home-buttons">
             {" "}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 
 import PlantCard from "./PlantCard";
@@ -26,7 +26,7 @@ const AllPlants = () => {
   }, []);
 
   // re-render on search
-  /* useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       await axios
         .get(`https://plant-finder-api.herokuapp.com/api/v1/plants${search}`)
@@ -35,11 +35,14 @@ const AllPlants = () => {
     }
 
     fetchData();
-  }, [search]);*/
+  }, [search]);
 
   return (
     <div className="AllPlants">
       <PlantSearchBar />
+      <div className="Add-plant-link">
+        <Link to="/add-plant">Add your own plant</Link>
+      </div>
       <div className="AllPlants-container">
         {plants.map((plant) => (
           <PlantCard

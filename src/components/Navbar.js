@@ -11,9 +11,6 @@ const NavBar = ({ isLoggedIn, handleLogout }) => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/add-plant">Add Plant</Link>
-        </li>
-        <li>
           <Link to="/all-plants">All Plants</Link>
         </li>
         <li>

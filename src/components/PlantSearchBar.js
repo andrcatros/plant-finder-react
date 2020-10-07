@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import qs from "qs";
+
+import "../styles/PlantSearchBar.css";
 
 const PlantSearchBar = () => {
   const { search } = useLocation();
-  const [searchQuery, setSearchQuery] = useState("");
-  const history = useHistory();
+  //  const [searchQuery, setSearchQuery] = useState("");
+  //  const history = useHistory();
 
   // create query string
   const buildQueryString = (operation, valueObj) => {
@@ -24,7 +26,8 @@ const PlantSearchBar = () => {
   };
 
   // handle search input form
-  const handleSearch = (e) => {
+  {
+    /* const handleSearch = (e) => {
     e.preventDefault();
     console.log(searchQuery);
     const newSearchQuery = buildQueryString("query", {
@@ -34,28 +37,39 @@ const PlantSearchBar = () => {
     history.push(newSearchQuery);
 
     setSearchQuery("");
-  };
-
-  // handle resetting search
-  const handleReset = (e) => {
-    e.preventDefault();
-    history.push("/all-plants");
-  };
+  };*/
+  }
 
   return (
     <div className="PlantSearchBar">
-      <form onSubmit={handleSearch}>
-        <label>
-          Search plant description:
-          <input
-            name="description"
-            id="description"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </label>
-      </form>
-      <button onClick={handleReset}>Reset</button>
+      <li>
+        <Link to={"/all-plants"}>All</Link>
+      </li>
+      <li>
+        <Link to={buildQueryString("query", { category: "Houseplant" })}>
+          Houseplant
+        </Link>
+      </li>
+      <li>
+        <Link to={buildQueryString("query", { category: "Seeds and Bulbs" })}>
+          Seeds & Bulbs
+        </Link>
+      </li>
+      <li>
+        <Link to={buildQueryString("query", { category: "Seedling" })}>
+          Seedling
+        </Link>
+      </li>
+      <li>
+        <Link
+          to={buildQueryString("query", { category: "Pots and Containers" })}
+        >
+          Pots & Containers
+        </Link>
+      </li>
+      <li>
+        <Link to={buildQueryString("query", { category: "Other" })}>Other</Link>
+      </li>
     </div>
   );
 };

@@ -1,0 +1,38 @@
+.main-container {
+  display: flex;
+  box-shadow: 5px 5px 2px lightgray;
+  width: 80%;
+  margin-left: 14%;
+  margin-bottom: 2%;
+  border-radius: 5px;
+  padding: 20px;
+  border-right: 2px solid gray;
+   border-bottom: 2px solid gray;
+}
+
+.image-container img {
+  height: 180px;
+  width: 160px;
+  border-radius: 20%;
+  box-shadow: 5px 5px 10px tomato;
+  margin-right: 20px;
+}
+.image-container {
+  padding: 20px;
+}
+
+.margin {
+  width: 600px;
+}
+
+.button-style {
+  background-image: linear-gradient(lightgray, tomato);
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+  border: 1px solid gray;
+  font-size: 15px;
+  color: black;
+  border-radius: 5px;
+  font-weight: 400;
+}

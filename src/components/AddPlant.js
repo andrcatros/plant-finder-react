@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../styles/mine.scss";
 
 import Alert from "./Alert";
-import "../styles/AddPlant.css";
 
 const AddPlant = ({ isLoggedIn, userID }) => {
   const initialState = {
@@ -61,18 +61,24 @@ const AddPlant = ({ isLoggedIn, userID }) => {
   };
 
   return (
-    <div className="AddPlant">
+    <div className="base-container">
       {/*}   {!isLoggedIn ? (
         <p>Please login to add plants.</p>
    ) : ( */}
       <div>
         <p>DO NOT USE UNTIL LOGIN IS SETUP</p>
-        <form onSubmit={handleSubmit} className="AddPlant-form">
+        <div className="form">
+        <div className="form-group">
+        <div className="content">
+        <form onSubmit={handleSubmit}>
           <label>
             Image file: <br />
-            <input type="file" name="img" id="img" accept="image/*" />
+            <input type="file" name="img" id="img" accept="image/*" className="btn"/>
           </label>
           <label>
+          <div className="form">
+        <div className="form-group">
+        <div className="content">
             Name: <br />
             <input
               id="name"
@@ -80,8 +86,14 @@ const AddPlant = ({ isLoggedIn, userID }) => {
               value={fields.name}
               onChange={handleFieldChange}
             />
+            </div>
+            </div>
+            </div>
           </label>
           <label>
+          <div className="form">
+        <div className="form-group">
+        <div className="content">
             Description: <br />
             <textarea
               id="description"
@@ -89,8 +101,14 @@ const AddPlant = ({ isLoggedIn, userID }) => {
               onChange={handleFieldChange}
               value={fields.description}
             />
+            </div>
+            </div>
+            </div>
           </label>
           <label>
+          <div className="form">
+        <div className="form-group">
+        <div className="content">
             Category: <br />
             <select id="category" name="category" onChange={handleFieldChange}>
               <option value="Houseplant">Houseplant</option>
@@ -99,13 +117,20 @@ const AddPlant = ({ isLoggedIn, userID }) => {
               <option value="Pots & Containers">Pots & Containers</option>
               <option value="Other">Other</option>
             </select>
+            </div>
+            </div>
+            </div>
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit" className="btn">Submit</button>
+         
         </form>
 
         {alert.message && <Alert {...alert} />}
       </div>
     </div>
+ </div>
+ </div>
+ </div>
   );
 };
 

@@ -1,0 +1,39 @@
+.Profile {
+  display: block;
+  margin-top: 100px;
+}
+
+.Profile-container {
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .AllPlants-container {
+    display: block;
+  }
+}
+
+h4 {
+  padding-top: 10px;
+}
+
+.Profile button {
+  border-style: none;
+  width: 200px;
+  height: 30px;
+  font-size: 17px;
+  border-radius: 3vw;
+  margin: 4px;
+  display: block;
+  background-color: #87c570;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: 0;
+  text-decoration: none;
+}

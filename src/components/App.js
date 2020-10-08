@@ -5,6 +5,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Navbar from "./Navbar";
+import Profile from "./Profile";
 import AddPlant from "./AddPlant";
 import AllPlants from "./AllPlants";
 
@@ -14,6 +15,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userID, setUserID] = useState(null);
   const [userName, setUserName] = useState(null);
+  const [userLocation, setUserLocation] = useState("");
 
   let history = useHistory();
 
@@ -39,6 +41,7 @@ function App() {
             isLoggedIn={isLoggedIn}
             setUserID={setUserID}
             setUserName={setUserName}
+            setUserLocation={setUserLocation}
           />
         </Route>
         <Route exact path="/register">
@@ -53,6 +56,9 @@ function App() {
         </Route>
         <Route exact path="/all-plants">
           <AllPlants />
+        </Route>
+        <Route exact path="/profile/:userID">
+          <Profile />
         </Route>
       </Switch>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "./Alert";
@@ -7,7 +7,13 @@ import GoBackButton from "./GoBackButton";
 
 import "../styles/Login.css";
 
-const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
+const Login = ({
+  setIsLoggedIn,
+  isLoggedIn,
+  setUserID,
+  setUserName,
+  setUserLocation,
+}) => {
   const [fields, setFields] = useState({ email: "", password: "" });
   const [alert, setAlert] = useState({ message: "", success: false });
 
@@ -26,6 +32,7 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
             setIsLoggedIn(true);
             setUserID(res.data._id);
             setUserName(res.data.name);
+            setUserLocation(res.data.location);
           } else {
             setAlert({
               message: "Login failed, try again",
@@ -59,6 +66,9 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
       ) : (
         <div>
           {" "}
+          <h4>
+            Don't have an account? <Link to="/register">Register</Link>
+          </h4>
           <form onSubmit={handleSubmit} className="login-form">
             <label>
               Email address:

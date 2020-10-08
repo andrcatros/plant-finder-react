@@ -11,8 +11,6 @@ const AllPlants = () => {
   const [plants, setPlants] = useState([]);
   const { search } = useLocation();
 
-  console.log(search);
-
   // initial render
   useEffect(() => {
     async function fetchData() {
@@ -50,6 +48,8 @@ const AllPlants = () => {
             email={plant.User.email}
             name={plant.name}
             plantBy={plant.User.name}
+            plantByID={plant.User._id}
+            plantLocation={plant.User.location}
             description={plant.description}
             category={plant.category}
             img={plant.img}

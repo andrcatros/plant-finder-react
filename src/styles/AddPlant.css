@@ -10,7 +10,7 @@
   background-color: #87c570;
   position: relative;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
   outline: none;
   border: 0;
   text-decoration: none;
@@ -18,7 +18,7 @@
   width: 150px;
   margin: 0.3vw;
   height: 30px;
-  padding: 0.8vw 1vw;
+  padding: 0;
   font-size: 16px;
 }
 

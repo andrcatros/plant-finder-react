@@ -1,13 +1,11 @@
-import React, { useState } from "react";
-import { useLocation, useHistory, Link } from "react-router-dom";
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
 import "../styles/PlantSearchBar.css";
 
 const PlantSearchBar = () => {
   const { search } = useLocation();
-  //  const [searchQuery, setSearchQuery] = useState("");
-  //  const history = useHistory();
 
   // create query string
   const buildQueryString = (operation, valueObj) => {
@@ -24,21 +22,6 @@ const PlantSearchBar = () => {
     };
     return qs.stringify(newQuery, { addQueryPrefix: true, encode: false });
   };
-
-  // handle search input form
-  {
-    /* const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(searchQuery);
-    const newSearchQuery = buildQueryString("query", {
-      description: { $regex: searchQuery },
-    });
-
-    history.push(newSearchQuery);
-
-    setSearchQuery("");
-  };*/
-  }
 
   return (
     <div className="PlantSearchBar">

@@ -13,6 +13,9 @@ const Login = ({
   setUserID,
   setUserName,
   setUserLocation,
+  setUserEmail,
+  setUserAbout,
+  setUserImg,
 }) => {
   const [fields, setFields] = useState({ email: "", password: "" });
   const [alert, setAlert] = useState({ message: "", success: false });
@@ -33,9 +36,12 @@ const Login = ({
             setUserID(res.data._id);
             setUserName(res.data.name);
             setUserLocation(res.data.location);
+            setUserEmail(res.data.email);
+            setUserAbout(res.data.about);
+            setUserImg(res.data.profileImg);
           } else {
             setAlert({
-              message: "Login failed, try again",
+              message: "Edit failed, try again",
               success: false,
             });
           }

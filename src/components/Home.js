@@ -7,7 +7,14 @@ const Home = ({ isLoggedIn, userName }) => {
   return (
     <div className="Home" style={{ margin: "100px" }}>
       {isLoggedIn ? (
-        <div>Welcome back {userName} :)</div>
+        <div>
+          Welcome back {userName} :){" "}
+          <p>
+            Would you like to{" "}
+            <Link to="/edit-profile">edit your about page</Link> or post a new{" "}
+            <Link to="/add-plant">plant swap ad</Link>?{" "}
+          </p>
+        </div>
       ) : (
         <>
           <p>Welcome to Plant Finder.</p>

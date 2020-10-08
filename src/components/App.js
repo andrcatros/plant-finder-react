@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import Profile from "./Profile";
 import AddPlant from "./AddPlant";
 import AllPlants from "./AllPlants";
+import EditProfile from "./EditProfile";
 
 import "../styles/App.css";
 
@@ -16,6 +17,9 @@ function App() {
   const [userID, setUserID] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userLocation, setUserLocation] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userAbout, setUserAbout] = useState("");
+  const [userImg, setUserImg] = useState("");
 
   let history = useHistory();
 
@@ -33,7 +37,12 @@ function App() {
       <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <Switch>
         <Route exact path="/">
-          <Home isLoggedIn={isLoggedIn} userID={userID} userName={userName} />
+          <Home
+            isLoggedIn={isLoggedIn}
+            userID={userID}
+            userName={userName}
+            userAbout={userAbout}
+          />
         </Route>
         <Route exact path="/login">
           <Login
@@ -42,6 +51,9 @@ function App() {
             setUserID={setUserID}
             setUserName={setUserName}
             setUserLocation={setUserLocation}
+            setUserEmail={setUserEmail}
+            setUserAbout={setUserAbout}
+            setUserImg={setUserImg}
           />
         </Route>
         <Route exact path="/register">
@@ -56,6 +68,16 @@ function App() {
         </Route>
         <Route exact path="/all-plants">
           <AllPlants />
+        </Route>
+        <Route exact path="/edit-profile">
+          <EditProfile
+            isLoggedIn={isLoggedIn}
+            userID={userID}
+            name={userName}
+            email={userEmail}
+            location={userLocation}
+            existingAbout={userAbout}
+          />
         </Route>
         <Route exact path="/profile/:userID">
           <Profile />

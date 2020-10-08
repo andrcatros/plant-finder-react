@@ -11,7 +11,7 @@ const GoBackButton = ({ path }) => {
 
   return (
     <div className="Go-Back-Button">
-      <button onClick={handleClick}>Back</button>
+      <button onClick={handleClick}>Go Back</button>
     </div>
   );
 };

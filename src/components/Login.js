@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "./Alert";
+import GoBackButton from "./GoBackButton";
 
 import "../styles/Login.css";
 
@@ -89,6 +90,7 @@ const Login = ({ setIsLoggedIn, isLoggedIn, setUserID, setUserName }) => {
           {alert.message && <Alert {...alert} />}
         </div>
       )}{" "}
+      <GoBackButton path={"/"} />
     </div>
   );
 };

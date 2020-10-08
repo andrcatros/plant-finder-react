@@ -10,6 +10,7 @@
 .login-form {
   justify-items: center;
   justify-content: center;
+  margin-bottom: 100px;
 }
 
 .login-form input {

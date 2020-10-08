@@ -35,3 +35,15 @@
 .Navbar a:hover {
   background-color: #87c570;
 }
+
+.logout-button {
+  background-color: white;
+  border-style: none;
+  font-family: Roboto, Arial;
+  font-size: 16px;
+  vertical-align: top;
+}
+
+.logout-button:hover {
+  background-color: #87c570;
+}

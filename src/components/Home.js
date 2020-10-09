@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/Home.css";
 
+
 const Home = ({ isLoggedIn, userName }) => {
   return (
     <div className="Home" style={{ margin: "100px" }}>
@@ -17,6 +18,7 @@ const Home = ({ isLoggedIn, userName }) => {
         </div>
       ) : (
         <>
+        <img src="/PlantDoodle.png" alt="Doodle of person holding plant" id="welcome-doodle"></img>
           <p>Welcome to Plant Finder.</p>
           <p>Would you like to login or register an account?</p>
           <br />

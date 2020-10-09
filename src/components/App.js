@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} userID={userID} />
       <Switch>
         <Route exact path="/">
           <Home

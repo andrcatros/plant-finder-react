@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/Navbar.css";
 
-const NavBar = ({ isLoggedIn, handleLogout }) => {
+const NavBar = ({ isLoggedIn, handleLogout, userID }) => {
   return (
     <div className="Navbar">
       <ul>
@@ -13,16 +13,20 @@ const NavBar = ({ isLoggedIn, handleLogout }) => {
         <li>
           <Link to="/all-plants">All Plants</Link>
         </li>
-        <li>
+
           {" "}
           {isLoggedIn ? (
-            <button className="logout-button" onClick={handleLogout}>
+            <>
+
+            <li> <Link to={`/profile/${userID}`}>Your Profile</Link>
+            </li>
+            <li><button className="logout-button" onClick={handleLogout}>
               Logout
-            </button>
+            </button> </li>
+            </>
           ) : (
-            <Link to="/login">Login</Link>
+            <li><Link to="/login">Login</Link></li>
           )}{" "}
-        </li>
       </ul>
     </div>
   );

@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import AddPlant from "./AddPlant";
 import AllPlants from "./AllPlants";
 import EditProfile from "./EditProfile";
+import Messages from "./Messages";
 
 import "../styles/App.css";
 
@@ -81,6 +82,9 @@ function App() {
         </Route>
         <Route exact path="/profile/:userID">
           <Profile />
+        </Route>
+          <Route exact path="/messages">
+          <Messages isLoggedIn={isLoggedIn} userID={userID} name={userName} />
         </Route>
       </Switch>
     </div>

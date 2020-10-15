@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 
+import {UserContext} from "./UserContext";
 import "../styles/Navbar.css";
 
-const NavBar = ({ isLoggedIn, handleLogout, userID }) => {
+const NavBar = ({ handleLogout }) => {
+    const {user} = useContext(UserContext);
   return (
     <div className="Navbar">
       <ul>
@@ -15,10 +17,10 @@ const NavBar = ({ isLoggedIn, handleLogout, userID }) => {
         </li>
 
           {" "}
-          {isLoggedIn ? (
+          {user ? (
             <>
 
-            <li> <Link to={`/profile/${userID}`}>Your Profile</Link>
+            <li> <Link to={`/profile/${user._id}`}>Your Profile</Link>
             </li>
                         <li> <Link to="/messages">Your Messages</Link>
             </li>

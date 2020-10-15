@@ -1,24 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
+import { UserContext } from "./UserContext";
 import Alert from "./Alert";
 import GoBackButton from "./GoBackButton";
 
 import "../styles/Login.css";
 
-const Login = ({
-  setIsLoggedIn,
-  isLoggedIn,
-  setUserID,
-  setUserName,
-  setUserLocation,
-  setUserEmail,
-  setUserAbout,
-  setUserImg,
-}) => {
+const Login = () => {
+    const {user, setUser} = useContext(UserContext);
+  
   const [fields, setFields] = useState({ email: "", password: "" });
   const [alert, setAlert] = useState({ message: "", success: false });
+
 
   const handleFieldChange = (event) => {
     setFields({ ...fields, [event.target.name]: event.target.value });
@@ -32,13 +27,7 @@ const Login = ({
         .post("https://plant-finder-api.herokuapp.com/api/v1/login", fields)
         .then((res) => {
           if (res.status === 200) {
-            setIsLoggedIn(true);
-            setUserID(res.data._id);
-            setUserName(res.data.name);
-            setUserLocation(res.data.location);
-            setUserEmail(res.data.email);
-            setUserAbout(res.data.about);
-            setUserImg(res.data.profileImg);
+            setUser(res.data);
           } else {
             setAlert({
               message: "Edit failed, try again",
@@ -67,7 +56,7 @@ const Login = ({
 
   return (
     <div className="Login">
-      {isLoggedIn ? (
+      {user ? (
         <Redirect to="/" />
       ) : (
         <div>

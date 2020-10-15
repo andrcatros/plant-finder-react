@@ -1,35 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { Redirect, Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
+import { UserContext } from "./UserContext";
 import MessageCard from "./MessageCard";
 
-const Messages = ({isLoggedIn, userID, name}) => {
-    const [messages, setMessages] = useState([]);
+const Messages = () => {
+  const {user} = useContext(UserContext);
+  const [messages, setMessages] = useState([]);
 
       // initial render
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get(`http://localhost:4000/api/v1/messages/${userID}`)
+        .get(`http://localhost:4000/api/v1/messages/${user._id}`)
         .then((res) => setMessages(res.data))
         .catch((err) => console.log(err));
     }
-    fetchData();
-  }, [userID]);
-
-  console.log(messages);
+    if (user){
+      fetchData();
+    }
+    
+  }, [user]);
 
 
     return (<div className="Messages" style={{marginTop: "100px"}}> 
-    { isLoggedIn ? <div className="Messages-container"> 
+    { (user !== null) ? <div className="Messages-container"> 
     {
         messages.map(message => <MessageCard authorName={message.author.name} 
             subject={message.subject} key={message._id} 
             createdAt={message.createdAt}
             body={message.body} 
             recipient={message.recipient.name}
-            category={message.recipient._id===userID ? "recipient" : "author"}
+            category={message.recipient._id===user._id ? "recipient" : "author"}
             />)
     }
     </div> 
@@ -39,7 +42,5 @@ const Messages = ({isLoggedIn, userID, name}) => {
     
     </div>)
 }
-
-// isLoggedIn={isLoggedIn} userID={userID} name={userName}
 
 export default Messages;

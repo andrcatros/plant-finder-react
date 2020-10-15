@@ -31,8 +31,6 @@ const Profile = () => {
     fetchData();
   }, [userID]);
 
-  console.log(myPlants);
-
   return (
     <div className="Profile">
       {profile === null ? (
@@ -45,7 +43,7 @@ const Profile = () => {
               Location: <b>{profile.location}</b>
             </p>
             <p>
-              About me: <p>{profile.about} </p>
+              About me: <b>{profile.about} </b>
             </p>
             <a href={`mailto:${profile.email}?subject=Plant Swap`}>
               <button type="button" className="profile-email-button">

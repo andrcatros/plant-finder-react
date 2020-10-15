@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "./Alert";
+import { UserContext } from "./UserContext";
 
 import "../styles/AddPlant.css";
 
-const AddPlant = ({ isLoggedIn, userID }) => {
+const AddPlant = () => {
   const initialState = {
     name: "",
     description: "",
     category: "Houseplant",
   };
+    const {user} = useContext(UserContext);
 
   const [fields, setFields] = useState(initialState);
   const [img, setImg] = useState(null);
@@ -33,7 +35,7 @@ const AddPlant = ({ isLoggedIn, userID }) => {
     const postData = async () => {
       await axios
         .post(
-          `https://plant-finder-api.herokuapp.com/api/v1/users/${userID}/plants`,
+          `https://plant-finder-api.herokuapp.com/api/v1/users/${user._id}/plants`,
           data
         )
         .then((res) => {
@@ -71,7 +73,7 @@ const AddPlant = ({ isLoggedIn, userID }) => {
 
   return (
     <div className="AddPlant">
-      {!isLoggedIn ? (
+      {(user === null) ? (
         <p>
           Please <Link to="/login">login</Link> to add plants.
         </p>

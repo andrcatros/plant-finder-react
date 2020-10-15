@@ -1,15 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
 import "../styles/Home.css";
 
 
-const Home = ({ isLoggedIn, userName }) => {
+const Home = () => {
+  const {user} = useContext(UserContext);
+
   return (
     <div className="Home" style={{ margin: "100px" }}>
-      {isLoggedIn ? (
+      {(user !== null) ? (
         <div>
-          Welcome back {userName} :){" "}
+          Welcome back {user.name} :){" "}
           <p>
             Would you like to{" "}
             <Link to="/edit-profile">edit your about page</Link> or post a new{" "}

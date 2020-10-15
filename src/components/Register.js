@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
+import {UserContext} from "./UserContext";
 import GoBackButton from "./GoBackButton";
 import Alert from "./Alert";
 
 import "../styles/Register.css";
 
-const Register = ({ setUserID, setUserName, setIsLoggedIn }) => {
+const Register = () => {
+  const {user, setUser} = useContext(UserContext);
+
   const initialState = {
     fields: {
       email: "",
@@ -60,9 +63,7 @@ const Register = ({ setUserID, setUserName, setIsLoggedIn }) => {
           if (res.status === 201) {
             setAlert({ message: "success!", success: true });
 
-            setIsLoggedIn(true);
-            setUserID(res.data._id);
-            setUserName(res.data.name);
+            setUser(res.data)
 
             history.push("/");
           } else {

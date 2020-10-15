@@ -11,82 +11,54 @@ import AllPlants from "./AllPlants";
 import EditProfile from "./EditProfile";
 import Messages from "./Messages";
 
+import { UserContext } from "./UserContext";
+
 import "../styles/App.css";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userID, setUserID] = useState(null);
-  const [userName, setUserName] = useState(null);
-  const [userLocation, setUserLocation] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userAbout, setUserAbout] = useState("");
-  const [userImg, setUserImg] = useState("");
+  const [user, setUser] = useState(null);
 
   let history = useHistory();
 
   const handleLogout = async (e) => {
     e.preventDefault();
 
-    await setUserID(null);
-    await setIsLoggedIn(false);
+    await setUser(null);
 
     history.push("/");
   };
 
   return (
     <div className="App">
-      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} userID={userID} />
+      <UserContext.Provider value={{user, setUser}}>
+      <Navbar handleLogout={handleLogout}  />
       <Switch>
         <Route exact path="/">
-          <Home
-            isLoggedIn={isLoggedIn}
-            userID={userID}
-            userName={userName}
-            userAbout={userAbout}
-          />
+          <Home />
         </Route>
         <Route exact path="/login">
-          <Login
-            setIsLoggedIn={setIsLoggedIn}
-            isLoggedIn={isLoggedIn}
-            setUserID={setUserID}
-            setUserName={setUserName}
-            setUserLocation={setUserLocation}
-            setUserEmail={setUserEmail}
-            setUserAbout={setUserAbout}
-            setUserImg={setUserImg}
-          />
+          <Login />
         </Route>
         <Route exact path="/register">
-          <Register
-            setIsLoggedIn={setIsLoggedIn}
-            setUserID={setUserID}
-            setUserName={setUserName}
-          />
+          <Register />
         </Route>
         <Route exact path="/add-plant">
-          <AddPlant isLoggedIn={isLoggedIn} userID={userID} />
+          <AddPlant />
         </Route>
         <Route exact path="/all-plants">
           <AllPlants />
         </Route>
         <Route exact path="/edit-profile">
-          <EditProfile
-            isLoggedIn={isLoggedIn}
-            userID={userID}
-            name={userName}
-            email={userEmail}
-            location={userLocation}
-            existingAbout={userAbout}
-          />
+          <EditProfile/>
         </Route>
         <Route exact path="/profile/:userID">
           <Profile />
         </Route>
           <Route exact path="/messages">
-          <Messages isLoggedIn={isLoggedIn} userID={userID} name={userName} />
+          <Messages />
         </Route>
       </Switch>
+      </UserContext.Provider>
     </div>
   );
 }

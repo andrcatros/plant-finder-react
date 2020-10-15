@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Alert from "./Alert";
+import {UserContext} from "./UserContext";
 import "../styles/EditProfile.css"
 
-const EditProfile = ({
-  existingAbout,
-  email,
-  name,
-  location,
-  isLoggedIn,
-  userID,
-}) => {
-  const [about, setAbout] = useState({ about: `${existingAbout}` });
+const EditProfile = () => {
+  const {user} = useContext(UserContext);
+
+  const [about, setAbout] = useState({ about: `${user.about}` });
   const [alert, setAlert] = useState({ message: "", success: false });
 
   const handleSubmit = (e) => {
@@ -22,7 +18,7 @@ const EditProfile = ({
     const postData = async () => {
       await axios
         .patch(
-          `https://plant-finder-api.herokuapp.com/api/v1/users/${userID}`,
+          `https://plant-finder-api.herokuapp.com/api/v1/users/${user._id}`,
           about
         )
         .then((res) => {
@@ -48,7 +44,7 @@ const EditProfile = ({
 
   return (
     <div className="Edit-Profile" >
-      {!isLoggedIn ? (
+      {(user === null) ? (
         <Redirect to="/" />
       ) : (
         <div>

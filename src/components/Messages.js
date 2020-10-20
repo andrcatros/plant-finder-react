@@ -30,7 +30,8 @@ const Messages = () => {
     return (<div className="Messages" style={{marginTop: "100px"}}> 
     { (user !== null) ? 
       (messages !== null) ? <div className="Messages-container"> 
-      <Link to="/sent-messages">View your sent messages</Link>
+      <Link to="/sent-messages">My sent requests</Link>
+      <h3>My received requests:</h3>
     {
         messages.map(message => <MessageCard authorName={message.author.name} 
             subject={message.subject} key={message._id} 
@@ -41,7 +42,7 @@ const Messages = () => {
             messageId={message._id}
             />)
     }
-    </div> : <div>You don't have any messages  </div>
+    </div> : <div>You don't have any requests  </div>
   : <Redirect to="/" /> 
     }
     

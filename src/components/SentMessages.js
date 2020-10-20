@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 import { UserContext } from "./UserContext";
@@ -30,6 +30,7 @@ const SentMessages = () => {
     return (<div className="SentMessages" style={{marginTop: "100px"}}> 
     { (user !== null) ? 
       (messages !== null) ? <div className="SentMessages-container"> 
+      <Link to="/messages">My received requests</Link>
     {
         messages.map(message => <MessageCard authorName={message.author.name} 
             subject={message.subject} key={message._id} 
@@ -39,7 +40,7 @@ const SentMessages = () => {
             messageId={message._id}
             />)
     }
-    </div> : <div>You haven't sent any messages  </div>
+    </div> : <div>You haven't sent any requests  </div>
   : <Redirect to="/" /> 
     }
     

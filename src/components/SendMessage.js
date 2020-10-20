@@ -19,7 +19,6 @@ const SendMessage = ({recipient, previousSubject}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(message)
     
     const postData = async () => {
       await axios

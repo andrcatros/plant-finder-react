@@ -10,8 +10,8 @@ import AddPlant from "./AddPlant";
 import AllPlants from "./AllPlants";
 import EditProfile from "./EditProfile";
 import Messages from "./Messages";
-import MessageCard from "./MessageCard";
 import MessageDetail from "./MessageDetail";
+import SentMessages from "./SentMessages";
 
 import { UserContext } from "./UserContext";
 
@@ -58,7 +58,9 @@ function App() {
         </Route>
           <Route exact path="/messages">
           <Messages />
-          <MessageCard />
+        </Route>
+            <Route exact path="/sent-messages">
+          <SentMessages />
         </Route>
         <Route path="/messages/detail/:id">
           <MessageDetail />

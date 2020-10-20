@@ -1,9 +1,8 @@
-.MessageCard-author {
+.MessageCard {
   background-color: lightseagreen;
-}
-
-.MessageCard-recipient {
-  background-color: lightblue;
+  border-style: solid;
+  padding: 10px;
+  margin: 10px 100px;
 }
 
 .MessageCard-author,

@@ -13,7 +13,7 @@ const Messages = () => {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get(`http://localhost:4000/api/v1/messages/${user._id}`)
+        .get(`http://localhost:4000/api/v1/messages/participant/${user._id}`)
         .then((res) => setMessages(res.data))
         .catch((err) => console.log(err));
     }
@@ -22,7 +22,6 @@ const Messages = () => {
     }
     
   }, [user]);
-
 
     return (<div className="Messages" style={{marginTop: "100px"}}> 
     { (user !== null) ? <div className="Messages-container"> 
@@ -33,6 +32,7 @@ const Messages = () => {
             body={message.body} 
             recipient={message.recipient.name}
             category={message.recipient._id===user._id ? "recipient" : "author"}
+            messageId={message._id}
             />)
     }
     </div> 

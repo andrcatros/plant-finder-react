@@ -10,6 +10,8 @@ import AddPlant from "./AddPlant";
 import AllPlants from "./AllPlants";
 import EditProfile from "./EditProfile";
 import Messages from "./Messages";
+import MessageCard from "./MessageCard";
+import MessageDetail from "./MessageDetail";
 
 import { UserContext } from "./UserContext";
 
@@ -56,6 +58,10 @@ function App() {
         </Route>
           <Route exact path="/messages">
           <Messages />
+          <MessageCard />
+        </Route>
+        <Route path="/messages/detail/:id">
+          <MessageDetail />
         </Route>
       </Switch>
       </UserContext.Provider>

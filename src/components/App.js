@@ -1,39 +1,72 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Switch, Route, useHistory } from "react-router-dom";
 
-import "../styles/App.scss";
-
-
-import AllPlants from "./AllPlants";
-import AddPlants from "./AddPlant";
-import Login from "./login";
-import Register from "./register";
+import Home from "./Home";
+import Login from "./Login";
+import Register from "./Register";
+import Navbar from "./Navbar";
 import Profile from "./Profile";
+import AddPlant from "./AddPlant";
+import AllPlants from "./AllPlants";
+import EditProfile from "./EditProfile";
+import Messages from "./Messages";
+import MessageDetail from "./MessageDetail";
+import SentMessages from "./SentMessages";
+
+import { UserContext } from "./UserContext";
+
+import "../styles/App.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  let history = useHistory();
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    await setUser(null);
+
+    history.push("/");
+  };
+
   return (
     <div className="App">
-    <div className="login">
-      <div className="container">
+      <UserContext.Provider value={{user, setUser}}>
+      <Navbar handleLogout={handleLogout}  />
       <Switch>
-      <Route exact path="/login">
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/login">
           <Login />
         </Route>
         <Route exact path="/register">
           <Register />
         </Route>
-        <Route exact path="/Profile">
-          <Profile />
-        </Route>
         <Route exact path="/add-plant">
-          <AddPlants />
+          <AddPlant />
         </Route>
         <Route exact path="/all-plants">
           <AllPlants />
         </Route>
+        <Route exact path="/edit-profile">
+          <EditProfile/>
+        </Route>
+        <Route exact path="/profile/:userID">
+          <Profile />
+        </Route>
+          <Route exact path="/messages">
+          <Messages />
+        </Route>
+            <Route exact path="/sent-messages">
+          <SentMessages />
+        </Route>
+        <Route path="/messages/detail/:id">
+          <MessageDetail />
+        </Route>
       </Switch>
-      </div>
-    </div>
+      </UserContext.Provider>
     </div>
   );
 }

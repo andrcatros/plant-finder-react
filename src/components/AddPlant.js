@@ -1,46 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-import "../styles/mine.scss";
 
 import Alert from "./Alert";
+import { UserContext } from "./UserContext";
 
-const AddPlant = ({ isLoggedIn, userID }) => {
+import "../styles/AddPlant.css";
+
+const AddPlant = () => {
   const initialState = {
     name: "",
     description: "",
-    category: ["Houseplant"],
+    category: "Houseplant",
   };
+    const {user} = useContext(UserContext);
 
   const [fields, setFields] = useState(initialState);
+  const [img, setImg] = useState(null);
   const [alert, setAlert] = useState({});
 
-  const handleFieldChange = (event) => {
-    setFields({ ...fields, [event.target.name]: event.target.value });
+  const handleUpload = (event) => {
+    setImg(event.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(fields);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const data = new FormData(e.target);
-    console.log(data);
-
-    const validate = () => {
-      if (fields.name === null || fields.name.trim() === "") {
-        setAlert({ message: "please enter a name" });
-      } else {
-        if (fields.description === null || fields.name.description === "") {
-          setAlert({ message: "please enter a description" });
-        } else {
-          return true;
-        }
-      }
-    };
+    const data = new FormData();
+    data.append("img", img);
+    data.append("name", fields.name);
+    data.append("description", fields.description);
+    data.append("category", fields.category);
 
     const postData = async () => {
       await axios
         .post(
-          `https://plant-finder-api.herokuapp.com/api/v1/users/${userID}/plants`,
+          `https://plant-finder-api.herokuapp.com/api/v1/users/${user._id}/plants`,
           data
         )
         .then((res) => {
@@ -55,82 +50,87 @@ const AddPlant = ({ isLoggedIn, userID }) => {
         });
     };
 
+    const validate = () => {
+      if (fields.name === null || fields.name.trim() === "") {
+        setAlert({ message: "please enter a name" });
+      } else {
+        if (fields.description === null || fields.name.description === "") {
+          setAlert({ message: "please enter a description" });
+        } else {
+          return true;
+        }
+      }
+    };
+
     if (validate) {
       postData();
     }
   };
 
-  return (
-    <div className="base-container">
-      {/*}   {!isLoggedIn ? (
-        <p>Please login to add plants.</p>
-   ) : ( */}
-      <div>
-        <p>DO NOT USE UNTIL LOGIN IS SETUP</p>
-        <div className="form">
-        <div className="form-group">
-        <div className="content">
-        <form onSubmit={handleSubmit}>
-          <label>
-            Image file: <br />
-            <input type="file" name="img" id="img" accept="image/*" className="btn"/>
-          </label>
-          <label>
-          <div className="form">
-        <div className="form-group">
-        <div className="content">
-            Name: <br />
-            <input
-              id="name"
-              name="name"
-              value={fields.name}
-              onChange={handleFieldChange}
-            />
-            </div>
-            </div>
-            </div>
-          </label>
-          <label>
-          <div className="form">
-        <div className="form-group">
-        <div className="content">
-            Description: <br />
-            <textarea
-              id="description"
-              name="description"
-              onChange={handleFieldChange}
-              value={fields.description}
-            />
-            </div>
-            </div>
-            </div>
-          </label>
-          <label>
-          <div className="form">
-        <div className="form-group">
-        <div className="content">
-            Category: <br />
-            <select id="category" name="category" onChange={handleFieldChange}>
-              <option value="Houseplant">Houseplant</option>
-              <option value="Seeds & Bulbs">Seeds & Bulbs</option>
-              <option value="Seedling">Seedling</option>
-              <option value="Pots & Containers">Pots & Containers</option>
-              <option value="Other">Other</option>
-            </select>
-            </div>
-            </div>
-            </div>
-          </label>
-          <button type="submit" className="btn">Submit</button>
-         
-        </form>
+  const handleFieldChange = (event) => {
+    setFields({ ...fields, [event.target.name]: event.target.value });
+  };
 
-        {alert.message && <Alert {...alert} />}
-      </div>
+  return (
+    <div className="AddPlant">
+      {(user === null) ? (
+        <p>
+          Please <Link to="/login">login</Link> to add plants.
+        </p>
+      ) : (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Plant image:
+              <input
+                type="file"
+                name="img"
+                id="img"
+                accept="image/*"
+                onChange={handleUpload}
+              />
+            </label>
+            <label>
+              Plant name:
+              <input
+                id="name"
+                name="name"
+                value={fields.name}
+                onChange={handleFieldChange}
+              />
+            </label>
+            <label>
+              Plant description:
+              <textarea
+                id="description"
+                name="description"
+                onChange={handleFieldChange}
+                value={fields.description}
+              />
+            </label>
+            <label>
+              Category: {"  "}
+              <select
+                id="category"
+                name="category"
+                onChange={handleFieldChange}
+              >
+                <option value="Houseplant">Houseplant</option>
+                <option value="Seeds and Bulbs">Seeds & Bulbs</option>
+                <option value="Seedling">Seedling</option>
+                <option value="Pots and Containers">Pots & Containers</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+            <button type="submit" onSubmit={handleSubmit}>
+              Submit
+            </button>
+          </form>
+
+          {alert.message && <Alert {...alert} />}
+        </div>
+      )}
     </div>
- </div>
- </div>
- </div>
   );
 };
 

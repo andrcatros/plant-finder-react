@@ -1,38 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+import PlantCard from "./PlantCard";
+
 import "../styles/Profile.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  faUserSecret,
-  faPlusCircle,
-  faPaperPlane
-} from "@fortawesome/free-solid-svg-icons";
+const Profile = () => {
+  const params = useParams();
+  const userID = params.userID;
 
-const Profile = props => {
-  const { name, username, email } = props.profile;
+  const [profile, setProfile] = useState(null);
+  const [myPlants, setMyPlants] = useState([]);
+
+  // get profile data
+  useEffect(() => {
+    async function fetchData() {
+      await axios
+        .get(`https://plant-finder-api.herokuapp.com/api/v1/users/${userID}`)
+        .then((res) => setProfile(res.data))
+        .catch((err) => console.log(err));
+
+      await axios
+        .get(
+          `https://plant-finder-api.herokuapp.com/api/v1/users/${userID}/plants`
+        )
+        .then((res) => setMyPlants(res.data))
+        .catch((err) => console.log(err));
+    }
+    fetchData();
+  }, [userID]);
 
   return (
-    <div className="main-container">
-      <div className="image-container">
-        <img src={"https://images.pexels.com/photos/5403574/pexels-photo-5403574.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"} alt={name} />
-      </div>
-      <div className="margin">
-        <h2>{name}</h2>
-        <h4>
-          <FontAwesomeIcon icon={faUserSecret} /> {username}
-        </h4>
-        <p>
-          <small>
-            <FontAwesomeIcon icon={faPaperPlane} /> {email}
-          </small>
-        </p>
-        <button
-          className="button-style"
-          onClick={() => props.handleAddProfile(props.profile)}
-        >
-          <FontAwesomeIcon icon={faPlusCircle} /> <b>Follow</b>{" "}
-        </button>
-      </div>
+    <div className="Profile">
+      {profile === null ? (
+        <div>Loading data...</div>
+      ) : (
+        <>
+          <div className="Profile-text">
+            <h2>{profile.name}'s profile</h2>
+            <p>
+              Location: <b>{profile.location}</b>
+            </p>
+            <p>
+              About me: <b>{profile.about} </b>
+            </p>
+            <a href={`mailto:${profile.email}?subject=Plant Swap`}>
+              <button type="button" className="profile-email-button">
+                Email Me
+              </button>
+            </a>
+          </div>
+          <h4>My plants:</h4>
+          <div className="Profile-container">
+            {myPlants.map((plant) => (
+              <PlantCard
+                key={plant._id}
+                email={plant.User.email}
+                name={plant.name}
+                plantBy={plant.User.name}
+                plantByID={plant.User._id}
+                plantLocation={plant.User.location}
+                description={plant.description}
+                category={plant.category}
+                img={plant.img}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

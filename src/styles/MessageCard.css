@@ -1,0 +1,13 @@
+.MessageCard {
+  background-color: lightseagreen;
+  border-style: solid;
+  padding: 10px;
+  margin: 10px 100px;
+}
+
+.MessageCard-author,
+.MessageCard-recipient {
+  border-style: solid;
+  padding: 10px;
+  margin: 10px 100px;
+}

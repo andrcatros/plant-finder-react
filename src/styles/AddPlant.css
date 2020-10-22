@@ -1,29 +1,62 @@
+.AddPlant {
+  align-content: center;
+  display: block;
+  position: relative;
+  margin-top: 80px;
+  float: none;
+}
+
 .AddPlant button {
-  background-color: green;
-  border-color: green;
-  box-shadow: none;
-  width: 30%;
+  background-color: #87c570;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  outline: none;
+  border: 0;
+  text-decoration: none;
+  border-radius: 0.7rem;
+  width: 150px;
+  margin: 0.3vw;
+  height: 30px;
+  padding: 0;
+  font-size: 16px;
+}
+
+.AddPlant button:hover {
+  background-color: #579540;
+}
+
+@media screen and (max-width: 600px) {
+  .AddPlant button {
+    padding: 0;
+    width: 40vw;
+  }
 }
 
 .AddPlant textarea {
-  width: 60%;
   height: 60%;
+  box-sizing: border-box;
+  display: block;
+  width: 400px;
 }
 
 .AddPlant input {
+  display: block;
   height: 22px;
   border: 1px solid grey;
+  width: 400px;
 }
 
-.AddPlant-form {
+.AddPlant select {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.AddPlant form {
   display: grid;
-  grid-template-rows: 60px 80px 150px 50px 20px;
+  grid-template-rows: 60px 80px 150px 50px 20px 100px;
   justify-items: center;
-  width: 80%;
-}
-
-.AddPlant-form > * {
-  width: 100%;
+  overflow: hidden;
+  height: 100%;
 }
 
 .AddPlant {
@@ -32,14 +65,30 @@
 
 @media only screen and (max-width: 600px) {
   .AddPlant-form {
-    width: 100%;
     display: grid;
-    grid-template-rows: 7vh 7vh 30vh 7vh 3vh;
+    grid-template-rows: 7vh 7vh 30vh 7vh 3vh 20vh;
+    width: 100vw;
   }
-  .AddPlant-form > * {
+
+  .AddPlant input {
+    width: 80vw;
+    box-sizing: border-box;
+    overflow: hidden;
   }
+
   .AddPlant textarea {
-    width: 85%;
     height: 70%;
+    width: 80vw;
   }
+}
+
+.AddPlant a {
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  padding: 2px;
+}
+
+.AddPlant a:hover {
+  background-color: #87c570;
 }

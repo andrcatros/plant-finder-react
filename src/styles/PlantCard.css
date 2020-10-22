@@ -9,12 +9,18 @@
 
 .PlantCard button {
   border-style: none;
-  background-color: darkgreen;
   width: 200px;
   height: 30px;
   font-size: 17px;
   border-radius: 3vw;
   margin: 4px;
+  display: block;
+  background-color: #87c570;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: 0;
+  text-decoration: none;
 }
 
 .PlantCard img {
@@ -23,6 +29,8 @@
 
 .PlantCard-text {
   font-size: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .PlantCard-text-description {
@@ -43,7 +51,7 @@
 
   .PlantCard button {
     border-style: none;
-    background-color: green;
+    background-color: #87c570;
     width: 80vw;
     height: 5vh;
     margin: 1.5vw;
@@ -52,4 +60,8 @@
   .PlantCard img {
     width: 100vw;
   }
+}
+
+.PlantCard button:hover {
+  background-color: #579540;
 }

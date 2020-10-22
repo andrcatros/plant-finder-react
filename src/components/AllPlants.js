@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 
 import PlantCard from "./PlantCard";
@@ -10,8 +10,6 @@ import "../styles/AllPlants.css";
 const AllPlants = () => {
   const [plants, setPlants] = useState([]);
   const { search } = useLocation();
-
-  console.log(search);
 
   // initial render
   useEffect(() => {
@@ -40,6 +38,9 @@ const AllPlants = () => {
   return (
     <div className="AllPlants">
       <PlantSearchBar />
+      <div className="Add-plant-link">
+        <Link to="/add-plant">Add your own plant</Link>
+      </div>
       <div className="AllPlants-container">
         {plants.map((plant) => (
           <PlantCard
@@ -47,8 +48,11 @@ const AllPlants = () => {
             email={plant.User.email}
             name={plant.name}
             plantBy={plant.User.name}
+            plantByID={plant.User._id}
+            plantLocation={plant.User.location}
             description={plant.description}
             category={plant.category}
+            img={plant.img}
           />
         ))}
       </div>
